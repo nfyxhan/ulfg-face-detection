@@ -19,4 +19,5 @@ RUN pip3 install -r requirements.txt
 
 ADD vision vision
 ADD models models
+ADD imgs imgs
 ADD detect_imgs.py .
