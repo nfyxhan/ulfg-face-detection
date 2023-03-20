@@ -1,0 +1,14 @@
+matplotlib=3.2.2
+numpy==1.14.6
+onnx==1.8.0
+onnxruntime==1.1.2
+opencv-python==3.4.4.19
+Pillow==7.1.0
+ptflops==0.6.9
+torch==1.10.1+cpu
+torchstat==0.0.7
+torchsummary==1.5.1
+torchvision==0.11.2
+tornado==6.0.4
+typing==3.7.4.3
+urllib3==1.26.15
