@@ -16,8 +16,8 @@ WORKDIR /workdir
 ENV TORCH_WHL torch-1.10.1-cp36-cp36m-linux_x86_64.whl 
 
 ADD requirements-cpu.txt requirements.txt
-RUN wget https://download.pytorch.org/whl/cpu/torch-1.10.1%2Bcpu-cp36-cp36m-linux_x86_64.whl --no-check-certificate -O ${TORCH_WHL}
-  pip3 install ${TORCH_WHL} 
+RUN wget https://download.pytorch.org/whl/cpu/torch-1.10.1%2Bcpu-cp36-cp36m-linux_x86_64.whl --no-check-certificate -O ${TORCH_WHL} && \
+  pip3 install ${TORCH_WHL} && \
   rm -f ${TORCH_WHL} && \
   pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --no-cache-dir
 
