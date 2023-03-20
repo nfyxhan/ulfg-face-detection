@@ -21,6 +21,7 @@ RUN wget https://download.pytorch.org/whl/cpu/torch-1.10.1%2Bcpu-cp36-cp36m-linu
   rm -f ${TORCH_WHL} && \
   pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --no-cache-dir
 
+ADD imgs imgs
 ADD vision vision
 ADD models models
 ADD main.py .
