@@ -141,7 +141,11 @@ def run(img_pil):
         h = float(box[3] - box[1])
         cx = float(box[0] + w/2 )
         cy = float(box[1] + h/2)
-        result.append([cx,cy,w,h])
+        result.append({
+            "box":[cx,cy,w,h],
+            "labels": float(labels[i]),
+            "probs": float(probs[i]),
+            })
     return result
 
 def compare(img_pil, results):
@@ -149,7 +153,7 @@ def compare(img_pil, results):
     img_draw = ImageDraw.Draw(color_pil)
     colors = ['red', 'green', 'blue', "purple"]
     for i, rect in enumerate(results):
-        cx, cy, w, h = tuple(rect)
+        cx, cy, w, h = tuple(rect['box'])
         a = 0
         box = cv2.boxPoints(((cx, cy), (w, h), a))
         box = np.int0(np.round(box))
@@ -183,11 +187,12 @@ if __name__ == "__main__":
                         help='imgs dir')
     parser.add_argument('--test_device', default="cpu", type=str,
                         help='cuda:0 or cpu')
+    parser.add_argument('--port', default=8090, type=int,
+                        help='int')
     args = parser.parse_args()
 
     init(args)
 
-    define("port", default=8090, type=int, help='指定运行时端口号')
-    tornado.options.parse_command_line()
-    port = options.port
+#    tornado.options.parse_command_line()
+    port = args.port
     make_app(port)
