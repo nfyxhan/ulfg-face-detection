@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     locales \
     python3 python3-pip \
     libsm6 libxext6 libxrender-dev && \
-  apt-get autoclean && rm -rf /var/lib/apt/lists/* &&\
+  apt-get autoclean && rm -rf /var/lib/apt/lists/* && \
   locale-gen zh_CN && \
   locale-gen zh_CN.UTF-8 && \
   pip3 install -U pip setuptools --no-cache-dir
