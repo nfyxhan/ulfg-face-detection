@@ -3,13 +3,14 @@ ENV  LANGUAGE zh_CN.UTF-8
 ENV  LANG zh_CN.UTF-8
 ENV  LC_ALL zh_CN.UTF-8
 RUN apt-get update && apt-get install -y \
-  git curl vim wget cmake \
-  locales \
-  python3 python3-pip \
-  libsm6 libxext6 libxrender-dev && \
+    git curl vim wget cmake \
+    locales \
+    python3 python3-pip \
+    libsm6 libxext6 libxrender-dev && \
+  apt-get autoclean && rm -rf /var/lib/apt/lists/* &&\
   locale-gen zh_CN && \
   locale-gen zh_CN.UTF-8 && \
-  pip3 install -U pip setuptools
+  pip3 install -U pip setuptools --no-cache-dir
 
 WORKDIR /workdir
 
