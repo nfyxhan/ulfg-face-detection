@@ -4,6 +4,7 @@ env:
   REGISTRY: ${{ vars.REGISTRY }} 
   REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  CACHE_IMAGE: ${{ vars.REGISTRY }}/${{ github.repository }}:cache
   GIT_SHA: ${{ github.sha }}
 
 on:
@@ -36,4 +37,7 @@ jobs:
       with:
         context: .
         push: true
+        platforms: linux/arm64,linux/amd64
         tags: ${{ vars.REGISTRY }}/ulfg-face-detection:v${{ env.GIT_SHA }}
+        cache-from: type=registry,ref=${{ env.CACHE_IMAGE }}
+        cache-to: type=registry,ref=${{ env.CACHE_IMAGE }},mode=max
